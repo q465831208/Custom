@@ -230,7 +230,7 @@ if [[ ! ${Force_Update} == 1 ]];then
 	fi
 	if [[ ${CURRENT_Version} -lt ${GET_Version} ]];then
 		[[ "${AutoUpdate_Mode}" == "1" ]] && exit
-		TIME && read -p "当前版本高于云端版本,是否使用云端版本覆盖现有固件?[Y/n]:" Choose
+		TIME && read -p "当前版本高于云端最新版本,是否使用云端版本覆盖现有固件?[Y/n]:" Choose
 		if [[ "${Choose}" == Y ]] || [[ "${Choose}" == y ]];then
 			TIME && echo "开始使用云端版本覆盖现有固件..."
 		else
