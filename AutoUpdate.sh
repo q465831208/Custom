@@ -256,10 +256,10 @@ if [[ ! "$?" == 0 ]];then
 	exit
 fi
 TIME && echo "固件下载成功!"
-TIME && echo "正在获取云端固件MD5和SHA256,请耐心等待..."
+TIME && echo "正在下载云端的MD5和SHA256,请耐心等待..."
 wget -q ${Github_Download}/${Firmware_Detail} -O ${Firmware_Detail}
 if [[ ! "$?" == 0 ]];then
-	TIME && echo "MD5和SHA256 获取失败,请检查网络后重试!"
+	TIME && echo "MD5和SHA256 下载失败,请检查网络后重试!"
 	exit
 fi
 GET_MD5=$(awk -F '[ :]' '/MD5/ {print $2;exit}' ${Firmware_Detail})
