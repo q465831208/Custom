@@ -121,7 +121,7 @@ Author="${Apidz%/*}"
 Cangku="${Github##*${Author}/}"
 Github_Tags="https://api.github.com/repos/${Apidz}/releases/tags/update_Firmware"
 cd /etc
-clear && echo "Openwrt-AutoUpdate Script ${Version}"
+clear && echo "插件版本:	${Version}"
 if [[ -z "${Input_Option}" ]];then
 	Upgrade_Options="-q" && TIME && echo "执行: 保留配置更新固件[静默模式]"
 else
@@ -256,10 +256,10 @@ if [[ ! "$?" == 0 ]];then
 	exit
 fi
 TIME && echo "固件下载成功!"
-TIME && echo "正在获取云端固件MD5,请耐心等待..."
+TIME && echo "正在获取云端固件MD5和SHA256,请耐心等待..."
 wget -q ${Github_Download}/${Firmware_Detail} -O ${Firmware_Detail}
 if [[ ! "$?" == 0 ]];then
-	TIME && echo "MD5 获取失败,请检查网络后重试!"
+	TIME && echo "MD5和SHA256 获取失败,请检查网络后重试!"
 	exit
 fi
 GET_MD5=$(awk -F '[ :]' '/MD5/ {print $2;exit}' ${Firmware_Detail})
@@ -275,6 +275,16 @@ if [[ ! "${GET_MD5}" == "${CURRENT_MD5}" ]];then
 	exit
 else
 	TIME && echo "MD5 对比成功!"
+fi
+GET_SHA256=$(awk -F '[ :]' '/SHA256/ {print $2;exit}' ${Firmware_Detail})
+CURRENT_SHA256=$(sha256sum ${Firmware} | cut -d ' ' -f1)
+echo -e "\n本地固件SHA256:${CURRENT_SHA256}"
+echo "云端固件SHA256:${GET_SHA256}"
+if [[ "${GET_SHA256}" == "${CURRENT_SHA256}" ]];then
+	TIME && echo "SHA256 对比成功!"
+else
+	TIME && echo "SHA256 对比失败!"
+	exit
 fi
 if [[ ${Compressed_x86} == 1 ]];then
 	TIME && echo "检测到固件为 [.gz] 压缩格式,开始解压固件..."
