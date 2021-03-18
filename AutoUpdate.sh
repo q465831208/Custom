@@ -3,7 +3,7 @@
 # AutoBuild Module by Hyy2001
 # AutoUpdate for Openwrt
 
-Version=V5.2
+Version=V5.3
 
 TIME() {
 	echo -ne "\n[$(date "+%H:%M:%S")] "
@@ -38,6 +38,8 @@ Install_Pkg() {
 }
 
 List_Info() {
+	echo "固件作者:	${Author}"
+	echo "编译仓库:	${Cangku}"
 	echo -e "\n/overlay 可用:	${Overlay_Available}"
 	echo "/tmp 可用:	${TMP_Available}M"
 	echo "固件下载位置:	/tmp/Downloads"
@@ -48,8 +50,6 @@ List_Info() {
 	echo "Github 地址:	${Github}"
 	echo "解析 API 地址:	${Github_Tags}"
 	echo "固件下载地址:	${Github_Download}"
-	echo "固件作者:	${Author}"
-	echo "编译仓库:	${Cangku}"
 	if [[ ${DEFAULT_Device} == "x86-64" ]];then
 		echo "EFI 引导: 	${EFI_Boot}"
 		echo "固件压缩:	${Compressed_x86}"
@@ -233,7 +233,7 @@ if [[ ! ${Force_Update} == 1 ]];then
 	fi
 	if [[ ${CURRENT_Version} -lt ${GET_Version} ]];then
 		[[ "${AutoUpdate_Mode}" == "1" ]] && exit
-		TIME && read -p "当前版本高于云端最新版本,是否使用云端版本覆盖现有固件?[Y/n]:" Choose
+		TIME && read -p "当前版本高于云端版本,是否使用云端版本覆盖现有固件?[Y/n]:" Choose
 		if [[ "${Choose}" == Y ]] || [[ "${Choose}" == y ]];then
 			TIME && echo "开始使用云端版本覆盖现有固件..."
 		else
@@ -267,14 +267,14 @@ CURRENT_MD5=$(md5sum ${Firmware} | cut -d ' ' -f1)
 echo -e "\n本地固件MD5:${CURRENT_MD5}"
 echo "云端固件MD5:${GET_MD5}"
 if [[ -z "${GET_MD5}" ]] || [[ -z "${CURRENT_MD5}" ]];then
-	TIME && echo -e "MD5 获取失败!"
+	TIME && echo "MD5 获取失败!"
 	exit
 fi
 if [[ ! "${GET_MD5}" == "${CURRENT_MD5}" ]];then
-	TIME && echo -e "MD5 对比失败,请检查网络后重试!"
+	TIME && echo "MD5 对比失败,请检查网络后重试!"
 	exit
 else
-	TIME && echo -e "MD5 对比成功!"
+	TIME && echo "MD5 对比成功!"
 fi
 if [[ ${Compressed_x86} == 1 ]];then
 	TIME && echo "检测到固件为 [.gz] 压缩格式,开始解压固件..."
@@ -288,13 +288,12 @@ if [[ ${Compressed_x86} == 1 ]];then
 		exit
 	fi
 fi
-TIME && echo -e "一切准备就绪,5秒后开始更新固件...\n"
+TIME && echo -e "一切准备就绪,5秒后开始更新固件..."
 sleep 5
-TIME && echo -e "正在更新固件,请耐心等候..."
+TIME && echo "正在更新固件,请耐心等候..."
 sysupgrade ${Upgrade_Options} ${Firmware}
 sleep 1
 if [[ $? -ne 0 ]];then
 	TIME && echo "固件刷写失败,请尝试不保留配置[-n]或手动下载固件!"
 	exit
 fi
-
