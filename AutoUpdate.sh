@@ -48,7 +48,8 @@ List_Info() {
 	echo "Github 地址:	${Github}"
 	echo "解析 API 地址:	${Github_Tags}"
 	echo "固件下载地址:	${Github_Download}"
-	echo "作者/仓库:	${Author}"
+	echo "固件作者:	${Author}"
+	echo "编译仓库:	${Cangku}"
 	if [[ ${DEFAULT_Device} == "x86-64" ]];then
 		echo "EFI 引导: 	${EFI_Boot}"
 		echo "固件压缩:	${Compressed_x86}"
@@ -115,8 +116,10 @@ x86-64)
 esac
 CURRENT_Ver="${CURRENT_Version}${BOOT_Type}"
 Github_Download="${Github}/releases/download/update_Firmware"
-Author="${Github##*com/}"
-Github_Tags="https://api.github.com/repos/${Author}/releases/tags/update_Firmware"
+Apidz="${Github##*com/}"
+Author="${Apidz%/*}"
+Cangku="${Github##*${Author}/}"
+Github_Tags="https://api.github.com/repos/${Apidz}/releases/tags/update_Firmware"
 cd /etc
 clear && echo "Openwrt-AutoUpdate Script ${Version}"
 if [[ -z "${Input_Option}" ]];then
@@ -211,7 +214,7 @@ fi
 Firmware_Info="$(echo ${GET_Firmware} | egrep -o "${Firmware_COMP1}-${Firmware_COMP2}-${DEFAULT_Device}-[a-zA-Z0-9_-]+.*?[0-9]+")"
 Firmware="${GET_Firmware}"
 Firmware_Detail="${Firmware_Info}${Detail_SFX}"
-echo -e "\n固件作者: ${Author%/*}"
+echo -e "\n固件作者: ${Author}"
 echo "设备名称: ${CURRENT_Device}"
 echo "固件格式: ${Firmware_GESHI}"
 echo -e "\n当前固件版本: ${CURRENT_Ver}"
