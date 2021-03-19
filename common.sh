@@ -272,7 +272,7 @@ case "${REPO_URL}" in
 			svn co https://github.com/281677160/Custom/branches/AdGuard/x86-64/usr/bin ${Home}/files/usr/bin
 			chmod -R 777 ${Home}/files/usr/bin/AdGuardHome
 		fi
-		if [[ "${TARGET_ADG}" == "friendlyarm_nanopi-r2s" ]];then
+		if [[ "${TARGET_ADG}" =~ (friendlyarm_nanopi-r2s|friendlyarm_nanopi-r4s) ]]; then
 			svn co https://github.com/281677160/Custom/branches/AdGuard/R2S/usr/bin ${Home}/files/usr/bin
 			chmod -R 777 ${Home}/files/usr/bin/AdGuardHome
 		fi
@@ -285,7 +285,7 @@ case "${REPO_URL}" in
 			svn co https://github.com/281677160/Custom/branches/AdGuard/x86-64/usr/bin ${Home}/files/usr/bin
 			chmod -R 777 ${Home}/files/usr/bin/AdGuardHome
 		fi
-		if [[ "${TARGET_ADG}" == "friendlyarm_nanopi-r2s" ]];then
+		if [[ "${TARGET_ADG}" =~ (friendlyarm_nanopi-r2s|friendlyarm_nanopi-r4s) ]]; then
 			svn co https://github.com/281677160/Custom/branches/AdGuard/R2S/usr/bin ${Home}/files/usr/bin
 			chmod -R 777 ${Home}/files/usr/bin/AdGuardHome
 		fi
