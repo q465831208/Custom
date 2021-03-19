@@ -4,11 +4,6 @@
 # matrix.target=${Modelfile}
 
 DIY_GET_COMMON_SH() {
-if [ `grep -c "CONFIG_TARGET_x86_64=y" ${Home}/.config` -eq '1' ]; then
-	TARGET_ADG="x86-64"
-else
-	TARGET_ADG="$(egrep -o "CONFIG_TARGET.*DEVICE.*=y" .config | sed -r 's/.*DEVICE_(.*)=y/\1/')"
-fi
 TYZZZ="package/lean/default-settings/files/zzz-default-settings"
 LIZZZ="package/default-settings/files/zzz-default-settings"
 }
@@ -263,6 +258,11 @@ sed -i '/INCLUDE/d' Plug-in > /dev/null 2>&1
 cat -n Plug-in > Plugin
 sed -i 's/	luci/、luci/g' Plugin
 awk '{print "  " $0}' Plugin > Plug-in
+if [ `grep -c "CONFIG_TARGET_x86_64=y" ${Home}/.config` -eq '1' ]; then
+	TARGET_ADG="x86-64"
+else
+	TARGET_ADG="$(egrep -o "CONFIG_TARGET.*DEVICE.*=y" .config | sed -r 's/.*DEVICE_(.*)=y/\1/')"
+fi
 
 case "${REPO_URL}" in
 "${LEDE}")
