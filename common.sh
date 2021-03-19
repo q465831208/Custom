@@ -91,8 +91,7 @@ DIY_GET_COMMON_SH
 cp -Rf "${Home}"/build/common/LIENOL/files "${Home}"
 cp -Rf "${Home}"/build/common/LIENOL/diy/* "${Home}"
 rm -rf feeds/packages/net/adguardhome
-sed -i "/exit 0/i\sed -i 's/<%=pcdata(ver.distversion)%>/<%=pcdata(ver.distversion)%><!--/g' /usr/lib/lua/luci/view/admin_status/index.htm" ${LIZZZ}
-sed -i "/exit 0/i\sed -i 's/(<%=pcdata(ver.luciversion)%>)/(<%=pcdata(ver.luciversion)%>)-->/g' /usr/lib/lua/luci/view/admin_status/index.htm" ${LIZZZ}
+sed -i '/exit 0/i\echo "*/3 * * * * chmod +x /etc/webweb && source /etc/webweb" >> /etc/crontabs/root' ${LIZZZ}
 sed -i 's/DEFAULT_PACKAGES +=/DEFAULT_PACKAGES += luci-app-passwall/g' target/linux/x86/Makefile
 }
 
@@ -298,7 +297,10 @@ case "${REPO_URL}" in
 	fi
 ;;
 esac
-
+if [[ "${TARGET_ADG}" == "x86-64" ]]; then
+	mkdir -p ${Home}/files/gzip
+	wget -P ${Home}/files/gzip https://downloads.openwrt.org/snapshots/packages/x86_64/packages/gzip_1.10-3_x86_64.ipk
+fi
 rm -rf {LICENSE,README,README.md,CONTRIBUTED.md,README_EN.md}
 rm -rf ./*/{LICENSE,README,README.md}
 rm -rf ./*/*/{LICENSE,README,README.md}
