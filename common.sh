@@ -63,10 +63,10 @@ find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -
 ################################################################################################################
 # LEDE源码通用diy2.sh文件
 Diy_lede2() {
-DIY_GET_COMMON_SH
-cp -Rf "${Home}"/build/common/LEDE/files "${Home}"
-cp -Rf "${Home}"/build/common/LEDE/diy/* "${Home}"
-sed -i '/exit 0/i\echo "*/3 * * * * chmod +x /etc/webweb.sh && source /etc/webweb.sh" >> /etc/crontabs/root' ${TYZZZ}
+#DIY_GET_COMMON_SH
+#cp -Rf "${Home}"/build/common/LEDE/files "${Home}"
+#cp -Rf "${Home}"/build/common/LEDE/diy/* "${Home}"
+#sed -i '/exit 0/i\echo "*/3 * * * * chmod +x /etc/webweb.sh && source /etc/webweb.sh" >> /etc/crontabs/root' ${TYZZZ}
 }
 
 
