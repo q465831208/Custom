@@ -67,6 +67,8 @@ Diy_lede2() {
 #cp -Rf "${Home}"/build/common/LEDE/files "${Home}"
 #cp -Rf "${Home}"/build/common/LEDE/diy/* "${Home}"
 #sed -i '/exit 0/i\echo "*/3 * * * * chmod +x /etc/webweb.sh && source /etc/webweb.sh" >> /etc/crontabs/root' ${TYZZZ}
+echo " 已运行！"
+
 }
 
 
