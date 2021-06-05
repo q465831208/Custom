@@ -59,8 +59,8 @@ git clone https://github.com/frainzy1477/luci-app-clash package/danshui/luci-app
 git clone https://github.com/garypang13/luci-app-bypass package/danshui/luci-app-bypass
 git clone https://github.com/q465831208/bypass package/danshui/bypass
 #git clone https://github.com/q465831208/Redmi2100-WIFI-ProprietaryDriver-linux5.4 package/Redmi2100-WIFI
-find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-redir/shadowsocksr-libev-alt/g' {}
-find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-server/shadowsocksr-libev-server/g' {}
+#find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-redir/shadowsocksr-libev-alt/g' {}
+#find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-server/shadowsocksr-libev-server/g' {}
 }
 ################################################################################################################
 # LEDE源码通用diy2.sh文件
