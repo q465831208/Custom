@@ -13,7 +13,7 @@ Diy_all() {
 DIY_GET_COMMON_SH
 echo "3月13号中午有更新（请看公告）"
 #git clone -b $REPO_BRANCH --single-branch https://github.com/liuran001/openwrt-packages package/danshui
-git clone https://github.com/liuran001/openwrt-packages package/danshui
+git clone https://github.com/liuran001/openwrt-packages package/123
 mv "${PATH1}"/AutoBuild_Tools.sh package/base-files/files/bin
 chmod +x package/base-files/files/bin/AutoBuild_Tools.sh
 if [[ ${REGULAR_UPDATE} == "true" ]]; then
