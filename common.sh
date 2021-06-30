@@ -12,7 +12,7 @@ LIZZZ="package/default-settings/files/zzz-default-settings"
 Diy_all() {
 DIY_GET_COMMON_SH
 echo "3月13号中午有更新（请看公告）"
-git clone -b $REPO_BRANCH --single-branch https://github.com/q465831208/openwrt-package package/danshui
+#git clone -b $REPO_BRANCH --single-branch https://github.com/q465831208/openwrt-package package/danshui
 
 mv "${PATH1}"/AutoBuild_Tools.sh package/base-files/files/bin
 chmod +x package/base-files/files/bin/AutoBuild_Tools.sh
@@ -59,7 +59,7 @@ fi
 #git clone https://github.com/frainzy1477/luci-app-clash package/danshui/luci-app-clash
 #git clone https://github.com/garypang13/openwrt-bypass package/danshui/luci-app-bypass
 #git clone https://github.com/q465831208/bypass package/danshui/bypass
-git clone https://github.com/liuran001/openwrt-packages package/danshui/openwrt-packages
+git clone https://github.com/liuran001/openwrt-packages package/danshui
 #find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-redir/shadowsocksr-libev-alt/g' {}
 #find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-server/shadowsocksr-libev-server/g' {}
 }
