@@ -57,7 +57,7 @@ fi
 #git clone https://github.com/jerrykuku/luci-app-vssr package/danshui/luci-app-vssr
 #git clone https://github.com/vernesong/OpenClash package/danshui/luci-app-openclash
 #git clone https://github.com/frainzy1477/luci-app-clash package/danshui/luci-app-clash
-git clone https://github.com/garypang13/openwrt-bypass package/danshui/luci-app-bypass
+#git clone https://github.com/garypang13/openwrt-bypass package/danshui/luci-app-bypass
 #git clone https://github.com/q465831208/bypass package/danshui/bypass
 #git clone https://github.com/liuran001/openwrt-packages package/danshui
 #find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-redir/shadowsocksr-libev-alt/g' {}
